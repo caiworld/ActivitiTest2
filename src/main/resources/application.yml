@@ -1,0 +1,32 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST = 127.0.0.1)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = orcl)))
+    username: scott
+    password: tiger
+  activiti:
+    # 自动建表
+    #database-schema: ACTIVITI # TODO 千万不要加这个（第一次运行的时候加上，后面再注释）
+    #    false （默认值）：在创建流程引擎时检查库模式的版本，如果版本不匹配则抛出异常。
+    #    true：在创建流程引擎时，执行检查并在必要时对数据库中所有的表进行更新，如果表不存在，则自动创建。
+    #    create-drop：在创建流程引擎时，会创建数据库的表，并在关闭流程引擎时删除数据库的表。
+    #    drop-create：Activiti启动时，执行数据库表的删除操作，在Activiti关闭时，会执行数据库表的创建操作。
+    database-schema-update: false # 自动更新数据库结构
+    #    none：不保存任何的历史数据，因此，在流程执行过程中，这是最高效的。
+    #    activity：级别高于none，保存流程实例与流程行为，其他数据不保存。
+    #    audit：除activity级别会保存的数据外，还会保存全部的流程任务及其属性。audit为history的默认值。
+    #    full：保存历史数据的最高级别，除了会保存audit级别的数据外，还会保存其他全部流程相关的细节数据，包括一些流程参数等。
+    history-level: full # 保存历史数据库级别为full最高级别，便于历史数据的追溯
+    db-history-used: true
+    check-process-definitions: false # TODO 自动检查部署流程定义文件。默认为true，自动创建好表之后设为false。设为false会取消自动部署功能。
+    copy-variables-to-local-for-tasks: false # 不加这行配置的话，运行时流程变量表 + 历史流程变量表 统统的多出来一倍数据（其中taskId为null）
+mybatis:
+  # xml位置，指定dao与sql关联
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 下划线命名的字段，自动转驼峰命名
+    map-underscore-to-camel-case: true
+    default-executor-type: batch
+  type-aliases-package: com.caihao.activititest2.entity

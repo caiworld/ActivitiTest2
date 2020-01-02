@@ -1,0 +1,39 @@
+group 'com.caihao'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+//    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.4.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.1.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter-basic
+    compile group: 'org.activiti', name: 'activiti-spring-boot-starter-basic', version: '6.0.0'
+    // 用来生成流程图
+    // https://mvnrepository.com/artifact/org.activiti/activiti-image-generator
+//    compile group: 'org.activiti', name: 'activiti-image-generator', version: '6.0.0'
+
+
+    // https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8
+    compile group: 'com.oracle.ojdbc', name: 'ojdbc8', version: '19.3.0.0'
+
+    // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.0.1'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
+
+
+}
